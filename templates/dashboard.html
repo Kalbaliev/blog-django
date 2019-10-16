@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block body %}
+<h3 class="mt-5">Kontrol Paneli</h3>
+<hr>
+<p>Xoşgəldiniz,<small>{{request.user.username}}</small></p>
+<hr>
+
+<a class="btn btn-danger" href="/articles/addArticle">Məqalə Yaz</a>
+<hr>
+{% if articles %}
+    <table class="table table-dark">
+        <thead>
+            <tr>
+            <th scope="col">id</th>
+            <th scope="col">Başlıq</th>
+            <th scope="col">Yazar</th>
+            <th scope="col">Tarix</th>
+            <th scope="col">Yenilə</th>
+            <th scope="col">Sil</th>
+            </tr>
+        </thead>
+        <tbody>
+  {% for article in articles %}
+  
+  
+            <tr>
+            <th scope="row">{{article.id}}</th>
+            <td><a href="{% url 'article:articledetail' article.id  %}">{{article.title}}</a></td>
+            <td>{{article.author.username}}</td>
+            <td>{{article.created_at}}</td>
+            <td><a href="{% url 'article:updateArticle' article.id  %}" class="btn btn-warning">Yenilə</a></td>
+            <td><a href="{% url 'article:deleteArticle' article.id  %}" class="btn btn-danger">Sil</a></td>
+            </tr>
+  {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <div class="alert alert-warning"> Sizin tərəfinizdən yazılmış heç bir məqalə yoxdur.. </div>
+{% endif %}
+
+{% endblock body %}

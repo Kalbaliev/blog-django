@@ -1,0 +1,46 @@
+
+{% extends "layout.html" %}
+{% block body %}
+
+    <h3 class="mt-5">Məqalələr</h3>
+    <hr>
+    {% if articles %}
+            <form >
+            {% csrf_token %}
+            <input type="text" name="keyword" max-length="50" placeholder="Məqalənin adını yazın.." class="col-md-9">
+            <button type="submit" class="btn btn-danger">Axtar</button>
+            </form>
+        {% for article in articles %}
+            <div class="row">
+
+      <!-- Post Content Column -->
+            <div class="col-lg-8">
+
+
+            <!-- Title -->
+            <h3 class="mt-4"><a href="{% url 'article:articledetail' article.id  %}">{{article.title}}</a></h3>
+             
+            {% if article.article_image %}
+            <!-- Preview Image -->
+               <a href="{% url 'article:articledetail' article.id  %}"> <img class="img-fluid rounded" src="{{article.article_image.url}}" alt=""></a>
+
+            
+            {% endif %}
+             <p class="lead">{{article.content|safe|truncatewords:5}} <a style="float:right" class="btn btn-danger" href="{% url 'article:articledetail' article.id  %}">Davamını oxu</a></p> 
+            <!-- Author -->
+            <p class="lead">
+             {{article.author.username}} - {{article.created_at}}
+            </p>
+
+
+        <hr>
+        <br>
+      
+
+    </div>
+</div>
+        {% endfor %}
+    {% else %}
+    <div class="alert alert-warning" >Məqalə tapılmadı..</div>
+    {% endif %}
+{% endblock body %}

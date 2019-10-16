@@ -1,0 +1,21 @@
+
+    {
+        "python.pythonPath": "C:\\Users\\Ali Kalbaliev\\AppData\\Local\\Programs\\Python\\Python37-32\\python.exe",
+        "python.jediEnabled": false,
+        "files.autoSave": "afterDelay",
+        "editor.suggestSelection": "first",
+        "vsintellicode.modify.editor.suggestSelection": 
+        "automaticallyOverrodeDefaultValue",
+        "editor.minimap.enabled": true,
+     
+        "editor.largeFileOptimizations": false,
+        "html.format.indentInnerHtml": true,
+        "html.format.indentHandlebars": true,
+        "emmet.includeLanguages": {"django-html": "html"},
+        "[django-html]": {
+        
+        },
+        "files.associations": {
+            "*.html": "django-html"
+        }
+        }
